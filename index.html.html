@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Injustice League Esports | Under Construction</title>
+    <style>
+        :root {
+            --bg-color: #0a0a0e;
+            --panel-bg: rgba(255, 255, 255, 0.03);
+            --panel-border: rgba(255, 255, 255, 0.08);
+            --accent: #00ffcc; /* Neon cyan accent */
+            --text-main: #ffffff;
+            --text-muted: #8b8b99;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            background-image: radial-gradient(circle at 50% 0%, #1a1a2e 0%, var(--bg-color) 70%);
+            color: var(--text-main);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Container centering the main content */
+        .main-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        /* Glassmorphism panel */
+        .glass-panel {
+            background: var(--panel-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--panel-border);
+            border-radius: 16px;
+            padding: 50px 40px;
+            text-align: center;
+            max-width: 650px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 1s ease-out;
+        }
+
+        .status-badge {
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin: 10px 0 20px 0;
+            letter-spacing: 1px;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+        }
+
+        p {
+            color: var(--text-muted);
+            line-height: 1.7;
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            padding: 0 20px;
+        }
+
+        /* CTA Button */
+        .cta-btn {
+            background-color: transparent;
+            color: var(--accent);
+            border: 2px solid var(--accent);
+            padding: 14px 35px;
+            font-size: 1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .cta-btn:hover {
+            background-color: var(--accent);
+            color: var(--bg-color);
+            box-shadow: 0 0 20px rgba(0, 255, 204, 0.4);
+        }
+
+        /* Games Roster */
+        .games-roster {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 40px;
+        }
+
+        .games-roster span {
+            background: rgba(0, 0, 0, 0.3);
+            color: var(--text-muted);
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            border: 1px solid var(--panel-border);
+            letter-spacing: 0.5px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--panel-border);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        <div class="glass-panel">
+            <div class="status-badge">Standby For Drop</div>
+            
+            <h1>INJUSTICE LEAGUE</h1>
+            
+            <p>We are currently leveling up our web experience. The official home of IL Esports is under construction. Stay locked in for squad updates, tournament leaderboards, and new content drops.</p>
+            
+            <a href="#" class="cta-btn">Join The Discord</a>
+
+            <div class="games-roster">
+                <span>Call of Duty: Mobile</span>
+                <span>Valorant</span>
+                <span>FIFA</span>
+                <span>Black Myth: Wukong</span>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2026 Injustice League Esports. All rights reserved. | www.injusticeleague.xyz
+    </footer>
+
+</body>
+</html>
