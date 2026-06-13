@@ -622,9 +622,8 @@
     var GAP_START    = 105;   // 35% of canvas — must aim, can't camp center
     var GAP_MIN      = 50;    // minimum gap at high levels
     var GAP_LVL      = 8;     // gap shrinks per level
-    var SPAWN_START  = 4.0;   // seconds between wall spawns at level 1 (time-based, device-independent)
-    var SPAWN_MIN    = 2.0;   // minimum seconds between spawns at high levels
-    var SPAWN_LVL    = 0.23;  // seconds reduction per level
+    var SPAWN_DIST   = 480;   // pixel gap between consecutive walls (canvas = 540px)
+                              // next wall spawns when previous has scrolled this many px from spawn point
     var PLAYER_R     = 11;    // player circle radius
     // Zone pattern forces vertical movement — player CANNOT camp center
     // top = gap in top 38%, bottom = gap in bottom 38%, free = anywhere
@@ -774,7 +773,7 @@
     var CW     = canvas.width;
     var CH     = canvas.height;
 
-    var player, obstacles, obsCount, frameNo, spawnTimer, score, level, levelTimer, speed, raf, running, best, lastTs;
+    var player, obstacles, obsCount, frameNo, totalScroll, nextSpawnAt, score, level, levelTimer, speed, raf, running, best, lastTs;
     best = 0;
 
     var keys = { up: false, down: false, left: false, right: false };
@@ -785,8 +784,9 @@
         player     = { x: 70, y: CH/2, vx: 0, vy: 0 };
         obstacles  = [];
         obsCount   = 0;
-        frameNo    = 0;
-        spawnTimer = SPAWN_START; // trigger first wall immediately
+        frameNo      = 0;
+        totalScroll  = 0;
+        nextSpawnAt  = 0; // spawn first wall immediately
         score      = 0;
         level      = 1;
         levelTimer = 0;
@@ -847,12 +847,11 @@
         player.x = Math.max(PLAYER_R, Math.min(CW - PLAYER_R, player.x + player.vx * dt));
         player.y = Math.max(PLAYER_R, Math.min(CH - PLAYER_R, player.y + player.vy * dt));
 
-        /* obstacle spawning — time-based so speed is identical on mobile and desktop */
-        spawnTimer += dt;
-        var spawnInterval = Math.max(SPAWN_MIN, SPAWN_START - (level - 1) * SPAWN_LVL);
-        if (spawnTimer >= spawnInterval) {
+        /* obstacle spawning — pixel-distance based so spacing is consistent at all speeds */
+        totalScroll += pxSpd;
+        if (totalScroll >= nextSpawnAt) {
             spawnWall(gap, level);
-            spawnTimer -= spawnInterval; // carry over remainder for consistent timing
+            nextSpawnAt = totalScroll + SPAWN_DIST;
         }
 
         /* move + collide */
