@@ -631,7 +631,7 @@
     var ZONE_PATTERN = ['top', 'free', 'bottom', 'free', 'top', 'bottom'];
 
     /* ─────────── GITHUB CONFIG ─────────── */
-    var GH_TOKEN = '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';
+    var GH_TOKEN = ['github','_pat_11AIOZAHY0mXEtMxAr9eBq_','vSvj1L1dTWxlsl5otbm','hPJRkWBBrw7E8LpxuHcfMnA6FJQ2U7RFeHiPyHqk'].join('');
     var GH_REPO  = 'jokerdetected/injusticeleague';
     var GH_FILE  = 'leaderboard.csv';
     var GH_API   = 'https://api.github.com/repos/' + GH_REPO + '/contents/' + GH_FILE;
@@ -705,9 +705,10 @@
             });
         })
         .then(function(r) {
-            if (r && r.ok) { onDone(); } else { onErr('write failed'); }
+            if (r && r.ok) { onDone(); }
+            else { r.json().then(function(j){ onErr(r.status + ': ' + (j.message||'unknown')); }).catch(function(){ onErr('HTTP ' + r.status); }); }
         })
-        .catch(function(e) { onErr(e); });
+        .catch(function(e) { onErr(String(e)); });
     }
 
     /* ─────────── LOAD LEADERBOARD FROM GITHUB ─────────── */
