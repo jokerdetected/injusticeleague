@@ -6,36 +6,34 @@
     <title>Injustice League Esports | Under Construction</title>
     <style>
         :root {
-            --bg-color: #0a0a0e;
-            --panel-bg: rgba(255, 255, 255, 0.03);
-            --panel-border: rgba(255, 255, 255, 0.08);
-            --accent: #00ffcc; /* Neon cyan accent */
-            --text-main: #ffffff;
-            --text-muted: #8b8b99;
+            --bg: #0a0a0e;
+            --panel-bg: rgba(255,255,255,0.03);
+            --panel-border: rgba(255,255,255,0.08);
+            --accent: #00ffcc;
+            --accent2: #ff4d6d;
+            --gold: #ffd700;
+            --text: #ffffff;
+            --muted: #8b8b99;
         }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
         body, html {
-            margin: 0;
-            padding: 0;
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-color);
-            background-image: radial-gradient(circle at 50% 0%, #1a1a2e 0%, var(--bg-color) 70%);
-            color: var(--text-main);
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
+            background: var(--bg);
+            background-image: radial-gradient(circle at 50% 0%, #1a1a2e 0%, var(--bg) 70%);
+            color: var(--text);
+            min-height: 100vh;
         }
 
-        /* Container centering the main content */
-        .main-container {
-            flex: 1;
+        /* ── HERO ── */
+        .hero {
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 20px;
+            padding: 60px 20px 40px;
         }
 
-        /* Glassmorphism panel */
         .glass-panel {
             background: var(--panel-bg);
             backdrop-filter: blur(12px);
@@ -45,7 +43,8 @@
             padding: 50px 40px;
             text-align: center;
             max-width: 650px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
             animation: fadeIn 1s ease-out;
         }
 
@@ -60,23 +59,22 @@
         }
 
         h1 {
-            font-size: 3.5rem;
-            margin: 10px 0 20px 0;
+            font-size: clamp(2.2rem, 6vw, 3.5rem);
+            margin: 10px 0 20px;
             letter-spacing: 1px;
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+            text-shadow: 0 0 20px rgba(255,255,255,0.1);
         }
 
-        p {
-            color: var(--text-muted);
+        .hero p {
+            color: var(--muted);
             line-height: 1.7;
             font-size: 1.1rem;
             margin-bottom: 40px;
             padding: 0 20px;
         }
 
-        /* CTA Button */
         .cta-btn {
-            background-color: transparent;
+            background: transparent;
             color: var(--accent);
             border: 2px solid var(--accent);
             padding: 14px 35px;
@@ -92,23 +90,22 @@
         }
 
         .cta-btn:hover {
-            background-color: var(--accent);
-            color: var(--bg-color);
-            box-shadow: 0 0 20px rgba(0, 255, 204, 0.4);
+            background: var(--accent);
+            color: var(--bg);
+            box-shadow: 0 0 20px rgba(0,255,204,0.4);
         }
 
-        /* Games Roster */
         .games-roster {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 15px;
+            gap: 12px;
             margin-top: 40px;
         }
 
         .games-roster span {
-            background: rgba(0, 0, 0, 0.3);
-            color: var(--text-muted);
+            background: rgba(0,0,0,0.3);
+            color: var(--muted);
             padding: 6px 18px;
             border-radius: 20px;
             font-size: 0.85rem;
@@ -116,44 +113,978 @@
             letter-spacing: 0.5px;
         }
 
+        /* ── PRIZE BANNER ── */
+        .prize-banner {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px 48px;
+        }
+
+        .prize-card {
+            background: linear-gradient(135deg, rgba(255,215,0,0.07) 0%, rgba(0,255,204,0.05) 100%);
+            border: 1px solid rgba(255,215,0,0.25);
+            border-radius: 16px;
+            padding: 28px 32px;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            flex-wrap: wrap;
+            justify-content: center;
+            text-align: center;
+            animation: fadeIn 1.2s ease-out;
+        }
+
+        .prize-icon { font-size: 2.8rem; flex-shrink: 0; }
+
+        .prize-text h2 {
+            font-size: 1.35rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 6px;
+        }
+
+        .prize-text p { color: var(--muted); font-size: 0.95rem; line-height: 1.65; margin: 0; }
+        .prize-text p strong { color: var(--accent); }
+
+        /* ── SECTION ── */
+        .section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px 60px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+
+        .section-sub {
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.95rem;
+            margin-bottom: 32px;
+        }
+
+        .divider {
+            border: none;
+            border-top: 1px solid var(--panel-border);
+            margin: 0 20px 48px;
+        }
+
+        /* ── GAME WRAPPER ── */
+        .game-wrapper {
+            background: var(--panel-bg);
+            border: 1px solid var(--panel-border);
+            border-radius: 16px;
+            padding: 28px 20px 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .game-hud {
+            display: flex;
+            gap: 28px;
+            font-size: 0.88rem;
+            color: var(--muted);
+            letter-spacing: 1px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .game-hud span b { color: var(--accent); font-size: 1.15rem; }
+        .game-hud .hud-level b { color: var(--gold); }
+
+        /* canvas wrapper so it can scale down on mobile */
+        .canvas-wrap {
+            width: 100%;
+            max-width: 540px;
+            aspect-ratio: 540 / 300;
+            position: relative;
+        }
+
+        #gameCanvas {
+            width: 100%;
+            height: 100%;
+            border: 2px solid rgba(0,255,204,0.2);
+            border-radius: 10px;
+            background: #0d0d18;
+            display: block;
+        }
+
+        /* d-pad */
+        .dpad {
+            display: grid;
+            grid-template-columns: repeat(3, 56px);
+            grid-template-rows: repeat(3, 56px);
+            gap: 6px;
+        }
+
+        .dpad-btn {
+            background: rgba(0,255,204,0.08);
+            border: 1px solid rgba(0,255,204,0.2);
+            border-radius: 8px;
+            color: var(--accent);
+            font-size: 1.4rem;
+            cursor: pointer;
+            transition: all 0.12s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: none;
+        }
+
+        .dpad-btn:active, .dpad-btn.pressed {
+            background: rgba(0,255,204,0.25);
+            box-shadow: 0 0 14px rgba(0,255,204,0.4);
+            transform: scale(0.93);
+        }
+
+        .dpad-btn.center { background: transparent; border-color: transparent; cursor: default; }
+
+        .start-btn {
+            background: var(--accent);
+            color: var(--bg);
+            border: none;
+            padding: 12px 40px;
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.25s;
+            box-shadow: 0 0 18px rgba(0,255,204,0.3);
+        }
+
+        .start-btn:hover { box-shadow: 0 0 28px rgba(0,255,204,0.6); transform: scale(1.04); }
+        .game-hint { color: var(--muted); font-size: 0.8rem; text-align: center; }
+
+        /* level-up flash */
+        .levelup-flash {
+            position: fixed;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+            z-index: 50;
+        }
+
+        .levelup-text {
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            font-weight: 900;
+            letter-spacing: 5px;
+            color: var(--gold);
+            text-shadow: 0 0 40px rgba(255,215,0,0.8);
+            text-transform: uppercase;
+            opacity: 0;
+        }
+
+        .levelup-text.anim {
+            animation: levelPop 0.9s cubic-bezier(0.22,1,0.36,1) forwards;
+        }
+
+        @keyframes levelPop {
+            0%   { opacity: 0; transform: scale(0.5) translateY(20px); }
+            35%  { opacity: 1; transform: scale(1.1) translateY(-4px); }
+            65%  { opacity: 1; transform: scale(1);  }
+            100% { opacity: 0; transform: scale(0.9) translateY(-10px); }
+        }
+
+        /* ── GAME OVER MODAL ── */
+        .overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.78);
+            backdrop-filter: blur(6px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            padding: 20px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+
+        .overlay.show { opacity: 1; pointer-events: all; }
+
+        .modal {
+            background: #12121f;
+            border: 1px solid rgba(0,255,204,0.22);
+            border-radius: 16px;
+            padding: 36px 32px;
+            max-width: 440px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 0 60px rgba(0,0,0,0.8), 0 0 30px rgba(0,255,204,0.08);
+            animation: popIn 0.35s cubic-bezier(0.34,1.56,0.64,1);
+        }
+
+        .modal h2 { font-size: 2rem; letter-spacing: 3px; color: var(--accent2); margin-bottom: 8px; }
+
+        .modal-stats {
+            display: flex;
+            justify-content: center;
+            gap: 36px;
+            margin: 14px 0 26px;
+        }
+
+        .modal-stat .val { font-size: 2.6rem; font-weight: 900; color: var(--accent); line-height: 1; }
+        .modal-stat .val.gold { color: var(--gold); }
+        .modal-stat .lbl { font-size: 0.72rem; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; margin-top: 5px; }
+
+        .modal form { display: flex; flex-direction: column; gap: 12px; margin-bottom: 14px; }
+
+        .modal input {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 6px;
+            padding: 12px 16px;
+            color: #fff;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .modal input:focus { border-color: var(--accent); }
+        .modal input::placeholder { color: var(--muted); }
+
+        .modal .save-btn {
+            background: var(--accent);
+            color: var(--bg);
+            border: none;
+            padding: 13px;
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .modal .save-btn:hover { box-shadow: 0 0 20px rgba(0,255,204,0.5); }
+        .modal .save-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+        .save-status {
+            font-size: 0.82rem;
+            min-height: 18px;
+            margin-top: -4px;
+            color: var(--accent);
+        }
+
+        .save-status.err { color: var(--accent2); }
+
+        .modal .skip-link {
+            color: var(--muted);
+            font-size: 0.82rem;
+            cursor: pointer;
+            text-decoration: underline;
+            background: none;
+            border: none;
+            display: block;
+            width: 100%;
+            text-align: center;
+        }
+
+        .modal .skip-link:hover { color: #fff; }
+
+        /* ── LEADERBOARD ── */
+        .leaderboard {
+            background: var(--panel-bg);
+            border: 1px solid var(--panel-border);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .lb-header {
+            display: grid;
+            grid-template-columns: 52px 1fr 90px 80px;
+            padding: 14px 24px;
+            background: rgba(0,255,204,0.06);
+            border-bottom: 1px solid var(--panel-border);
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--muted);
+        }
+
+        .lb-row {
+            display: grid;
+            grid-template-columns: 52px 1fr 90px 80px;
+            padding: 14px 24px;
+            border-bottom: 1px solid var(--panel-border);
+            align-items: center;
+            transition: background 0.2s;
+        }
+
+        .lb-row:last-child { border-bottom: none; }
+        .lb-row:hover { background: rgba(255,255,255,0.03); }
+
+        .lb-rank { font-weight: 900; font-size: 1.05rem; }
+        .lb-row:nth-child(1) .lb-rank { color: #ffd700; }
+        .lb-row:nth-child(2) .lb-rank { color: #c0c0c0; }
+        .lb-row:nth-child(3) .lb-rank { color: #cd7f32; }
+        .lb-row:nth-child(n+4) .lb-rank { color: var(--muted); }
+
+        .lb-name  { font-weight: 600; font-size: 0.95rem; }
+        .lb-score { font-weight: 700; color: var(--accent); font-size: 1rem; font-variant-numeric: tabular-nums; }
+        .lb-level { text-align: right; font-size: 0.88rem; color: var(--gold); font-weight: 700; }
+
+        .lb-empty {
+            padding: 40px;
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        .lb-loading {
+            padding: 28px;
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.85rem;
+        }
+
+
         footer {
             text-align: center;
             padding: 20px;
-            color: var(--text-muted);
+            color: var(--muted);
             font-size: 0.85rem;
             border-top: 1px solid var(--panel-border);
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; transform: translateY(16px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes popIn {
+            from { opacity: 0; transform: scale(0.85); }
+            to   { opacity: 1; transform: scale(1); }
+        }
+
+        @media (max-width: 560px) {
+            .glass-panel { padding: 36px 22px; }
+            .prize-card  { padding: 20px 16px; }
+            .dpad-btn    { width: 50px; height: 50px; font-size: 1.2rem; }
+            .lb-header, .lb-row { grid-template-columns: 40px 1fr 70px 58px; padding: 11px 12px; font-size: 0.82rem; }
         }
     </style>
 </head>
 <body>
 
-    <div class="main-container">
-        <div class="glass-panel">
-            <div class="status-badge">Standby For Drop</div>
-            
-            <h1>INJUSTICE LEAGUE</h1>
-            
-            <p>We are currently leveling up our web experience. The official home of IL Esports is under construction. Stay locked in for squad updates, tournament leaderboards, and new content drops.</p>
-            
-            <a href="#" class="cta-btn">Join The Discord</a>
+<!-- ── HERO ── -->
+<div class="hero">
+    <div class="glass-panel">
+        <div class="status-badge">Standby For Drop</div>
+        <h1>INJUSTICE LEAGUE</h1>
+        <p>We are currently leveling up our web experience. The official home of IL Esports is under construction. Stay locked in for squad updates, tournament leaderboards, and new content drops.</p>
+        <a href="#" class="cta-btn">Join The Discord</a>
+        <div class="games-roster">
+            <span>Call of Duty: Mobile</span>
+            <span>Valorant</span>
+            <span>FIFA</span>
+            <span>Black Myth: Wukong</span>
+        </div>
+    </div>
+</div>
 
-            <div class="games-roster">
-                <span>Call of Duty: Mobile</span>
-                <span>Valorant</span>
-                <span>FIFA</span>
-                <span>Black Myth: Wukong</span>
-            </div>
+<!-- ── PRIZE BANNER ── -->
+<div class="prize-banner">
+    <div class="prize-card">
+        <div class="prize-icon">🎖️</div>
+        <div class="prize-text">
+            <h2>Play to Win CoD Mobile Prizes</h2>
+            <p>
+                Hold a top spot on our leaderboard and you could walk away with
+                <strong>Call of Duty: Mobile Battle Passes &amp; CP</strong>.<br>
+                Dominate the game below, save your score, and let your name do the talking.
+                <strong>Winners are contacted directly — top the board, claim the reward.</strong>
+            </p>
+        </div>
+    </div>
+</div>
+
+<hr class="divider">
+
+<!-- ── GAME SECTION ── -->
+<div class="section">
+    <div class="section-title">Earn Your Drops</div>
+    <div class="section-sub">Dodge the walls · Survive longer · Level up every 30 sec · Win CoD Mobile rewards</div>
+
+    <div class="game-wrapper">
+        <div class="game-hud">
+            <span>SCORE &nbsp;<b id="scoreDisplay">0</b></span>
+            <span class="hud-level">LEVEL &nbsp;<b id="levelDisplay">1</b></span>
+            <span>BEST &nbsp;<b id="bestDisplay">0</b></span>
+        </div>
+
+        <div class="canvas-wrap">
+            <canvas id="gameCanvas" width="540" height="300"></canvas>
+        </div>
+
+        <div class="dpad">
+            <div></div>
+            <button class="dpad-btn" id="btnUp"    aria-label="Up">▲</button>
+            <div></div>
+            <button class="dpad-btn" id="btnLeft"  aria-label="Left">◀</button>
+            <div class="dpad-btn center"></div>
+            <button class="dpad-btn" id="btnRight" aria-label="Right">▶</button>
+            <div></div>
+            <button class="dpad-btn" id="btnDown"  aria-label="Down">▼</button>
+            <div></div>
+        </div>
+
+        <button class="start-btn" id="startBtn">▶ Start Game</button>
+        <p class="game-hint">Arrow keys / WASD or D-pad above · Avoid the red walls · Speed increases every level</p>
+    </div>
+</div>
+
+<hr class="divider">
+
+<!-- ── LEADERBOARD SECTION ── -->
+<div class="section">
+    <div class="section-title">Leaderboard</div>
+    <div class="section-sub">Top 10 Players — Score &amp; Level · Battle Pass eligibility tracked here</div>
+
+    <div class="leaderboard">
+        <div class="lb-header">
+            <span>Rank</span>
+            <span>Player</span>
+            <span>Score</span>
+            <span style="text-align:right">Level</span>
+        </div>
+        <div id="lbBody">
+            <div class="lb-loading">Loading scores…</div>
         </div>
     </div>
 
-    <footer>
-        &copy; 2026 Injustice League Esports. All rights reserved. | www.injusticeleague.xyz
-    </footer>
+</div>
 
+<!-- ── LEVEL UP FLASH ── -->
+<div class="levelup-flash" id="lvlFlash" aria-hidden="true">
+    <div class="levelup-text" id="lvlText"></div>
+</div>
+
+<!-- ── GAME OVER MODAL ── -->
+<div class="overlay" id="overlay" role="dialog" aria-modal="true">
+    <div class="modal">
+        <h2>GAME OVER</h2>
+        <div class="modal-stats">
+            <div class="modal-stat">
+                <div class="val" id="modalScore">0</div>
+                <div class="lbl">Score</div>
+            </div>
+            <div class="modal-stat">
+                <div class="val gold" id="modalLevel">1</div>
+                <div class="lbl">Level</div>
+            </div>
+        </div>
+        <form id="saveForm" autocomplete="off">
+            <input type="text"  id="playerName"  placeholder="Your name"            maxlength="30" required>
+            <input type="email" id="playerEmail" placeholder="Email (kept private)"  maxlength="80" required>
+            <button type="submit" class="save-btn" id="saveBtn">Save Score &amp; Join Leaderboard</button>
+            <div class="save-status" id="saveStatus"></div>
+        </form>
+        <button class="skip-link" id="skipBtn">Skip — don't save</button>
+    </div>
+</div>
+
+<footer>
+    &copy; 2026 Injustice League Esports. All rights reserved. | www.injusticeleague.xyz
+</footer>
+
+<script>
+(function () {
+    'use strict';
+
+    /* ════════════════════════════════
+       CONFIG — paste your Apps Script
+       ════════════════════════════════ */
+
+    /* ─────────── GAME CONSTANTS ─────────── */
+    var LEVEL_SEC    = 30;    // seconds per level
+    var SPEED_START  = 1.3;   // slow but visible
+    var SPEED_LVL    = 0.65;  // speed jump per level
+    var SPEED_RAMP   = 0.022; // continuous ramp within a level
+    var GAP_START    = 105;   // 35% of canvas — must aim, can't camp center
+    var GAP_MIN      = 50;    // minimum gap at high levels
+    var GAP_LVL      = 8;     // gap shrinks per level
+    var SPAWN_START  = 880;   // frames between wall spawns at level 1 (10× spacing)
+    var SPAWN_MIN    = 420;   // minimum spacing at high levels
+    var SPAWN_LVL    = 50;    // spawn frequency increases per level
+    var PLAYER_R     = 11;    // player circle radius
+    // Zone pattern forces vertical movement — player CANNOT camp center
+    // top = gap in top 38%, bottom = gap in bottom 38%, free = anywhere
+    var ZONE_PATTERN = ['top', 'free', 'bottom', 'free', 'top', 'bottom'];
+
+    /* ─────────── GITHUB CONFIG ─────────── */
+    var GH_TOKEN = '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';
+    var GH_REPO  = 'jokerdetected/injusticeleague';
+    var GH_FILE  = 'leaderboard.csv';
+    var GH_API   = 'https://api.github.com/repos/' + GH_REPO + '/contents/' + GH_FILE;
+    var GH_RAW   = 'https://raw.githubusercontent.com/' + GH_REPO + '/main/' + GH_FILE;
+
+    /* ─────────── CSV HELPERS ─────────── */
+    function csvParse(text) {
+        var lines = text.trim().split('\n');
+        // skip header row
+        return lines.slice(1).map(function(line) {
+            var cols = line.match(/(".*?"|[^,]+)/g) || [];
+            function clean(s) { return s ? s.replace(/^"|"$/g,'').replace(/""/g,'"').trim() : ''; }
+            return {
+                name:  clean(cols[1]),
+                email: clean(cols[2]),
+                score: Number(clean(cols[3])) || 0,
+                level: Number(clean(cols[4])) || 1,
+                ts:    clean(cols[5])
+            };
+        }).filter(function(e){ return e.name; });
+    }
+
+    function csvSerialise(entries) {
+        var header = 'rank,name,email,score,level,timestamp\n';
+        return header + entries.map(function(e, i) {
+            return (i+1) + ',"' + e.name.replace(/"/g,'""') + '","'
+                 + (e.email||'').replace(/"/g,'""') + '",'
+                 + e.score + ',' + (e.level||1) + ',"' + (e.ts||'') + '"';
+        }).join('\n');
+    }
+
+    /* ─────────── LOCAL FALLBACK ─────────── */
+    var LS_KEY = 'il_lb_v3';
+    function lsLoad()  { try { return JSON.parse(localStorage.getItem(LS_KEY)) || []; } catch(e) { return []; } }
+    function lsSave(e) { try { localStorage.setItem(LS_KEY, JSON.stringify(e)); } catch(x) {} }
+
+    /* ─────────── SAVE SCORE TO GITHUB CSV ─────────── */
+    function ghSaveEntry(name, email, score, level, onDone, onErr) {
+        if (!GH_TOKEN) { onErr('no token'); return; }
+
+        // Step 1: read current file to get SHA + content
+        fetch(GH_API, {
+            headers: { 'Authorization': 'token ' + GH_TOKEN, 'Accept': 'application/vnd.github+json' }
+        })
+        .then(function(r) { return r.json(); })
+        .then(function(meta) {
+            var existing = [];
+            if (meta.content) {
+                try { existing = csvParse(atob(meta.content.replace(/\n/g,''))); } catch(e) {}
+            }
+
+            // append new entry (keep ALL entries in file)
+            existing.push({ name: name, email: email, score: score, level: level, ts: new Date().toISOString() });
+            existing.sort(function(a,b){ return b.score - a.score || b.level - a.level; });
+
+            var newContent = btoa(unescape(encodeURIComponent(csvSerialise(existing))));
+
+            // Step 2: write updated file back
+            return fetch(GH_API, {
+                method: 'PUT',
+                headers: {
+                    'Authorization': 'token ' + GH_TOKEN,
+                    'Accept': 'application/vnd.github+json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    message: 'score: ' + name + ' (' + score + ')',
+                    content: newContent,
+                    sha: meta.sha
+                })
+            });
+        })
+        .then(function(r) {
+            if (r && r.ok) { onDone(); } else { onErr('write failed'); }
+        })
+        .catch(function(e) { onErr(e); });
+    }
+
+    /* ─────────── LOAD LEADERBOARD FROM GITHUB ─────────── */
+    function ghLoadBoard(cb) {
+        // Read raw CSV — public URL, no token needed
+        fetch(GH_RAW + '?t=' + Date.now())
+            .then(function(r) { return r.ok ? r.text() : Promise.reject(); })
+            .then(function(text) {
+                var all = csvParse(text);
+                all.sort(function(a,b){ return b.score - a.score || b.level - a.level; });
+                cb(all.slice(0, 10));
+            })
+            .catch(function() { cb(null); });
+    }
+
+    /* ─────────── RENDER BOARD ─────────── */
+    function renderBoard(rows) {
+        var body = document.getElementById('lbBody');
+        if (!rows || !rows.length) {
+            body.innerHTML = '<div class="lb-empty">No scores yet — be the first to play!</div>';
+            return;
+        }
+        var medals = ['🥇','🥈','🥉'];
+        body.innerHTML = rows.map(function(e, i){
+            return '<div class="lb-row">'
+                + '<span class="lb-rank">' + (medals[i] || (i+1)) + '</span>'
+                + '<span class="lb-name">'  + esc(e.name)  + '</span>'
+                + '<span class="lb-score">' + e.score + '</span>'
+                + '<span class="lb-level">Lvl ' + (e.level||1) + '</span>'
+                + '</div>';
+        }).join('');
+    }
+
+    function loadAndRenderBoard() {
+        ghLoadBoard(function(rows) {
+            if (rows) {
+                renderBoard(rows);
+            } else {
+                // fallback to localStorage if GitHub unreachable
+                var local = lsLoad().slice(0,10).map(function(e){
+                    return { name: e.name, score: e.score, level: e.level };
+                });
+                renderBoard(local);
+            }
+        });
+    }
+
+    function esc(s) {
+        return String(s)
+            .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+            .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+
+    /* ════════════════════════════════
+       GAME ENGINE
+       ════════════════════════════════ */
+    var canvas = document.getElementById('gameCanvas');
+    var ctx    = canvas.getContext('2d');
+    var CW     = canvas.width;
+    var CH     = canvas.height;
+
+    var player, obstacles, obsCount, frameNo, score, level, levelTimer, speed, raf, running, best, lastTs;
+    best = 0;
+
+    var keys = { up: false, down: false, left: false, right: false };
+
+    /* ─────────── INIT ─────────── */
+    function initGame() {
+        if (raf) cancelAnimationFrame(raf);
+        player     = { x: 70, y: CH/2, vx: 0, vy: 0 };
+        obstacles  = [];
+        obsCount   = 0;
+        frameNo    = 0;
+        score      = 0;
+        level      = 1;
+        levelTimer = 0;
+        speed      = SPEED_START;
+        running    = true;
+        lastTs     = 0;          // 0 signals "first frame"
+        updateHUD();
+        raf = requestAnimationFrame(loop);
+    }
+
+    /* ─────────── LOOP ─────────── */
+    function loop(now) {
+        if (!running) return;
+        raf = requestAnimationFrame(loop);
+
+        /* first-frame guard: skip physics, just record timestamp */
+        if (lastTs === 0) { lastTs = now; draw(); return; }
+
+        var dt = Math.min((now - lastTs) / 1000, 0.05); // seconds, capped at 50 ms
+        lastTs = now;
+
+        update(dt);
+        draw();
+    }
+
+    /* ─────────── UPDATE ─────────── */
+    function update(dt) {
+        frameNo++;
+        levelTimer += dt;
+
+        /* level progression */
+        var targetLevel = Math.floor(levelTimer / LEVEL_SEC) + 1;
+        if (targetLevel > level) {
+            level = targetLevel;
+            flashLevel(level);
+        }
+
+        /* speed curve: slow start, ramps within level, jumps at each new level */
+        speed = SPEED_START
+              + (level - 1) * SPEED_LVL
+              + (levelTimer % LEVEL_SEC) * SPEED_RAMP;
+
+        /* gap narrows with level */
+        var gap = Math.max(GAP_MIN, GAP_START - (level - 1) * GAP_LVL);
+
+        /* player physics — snappy lerp-to-target (frame-rate independent)
+           Reaches full speed ~0.07s after key press, stops just as fast.
+           At MAX_V=280, crosses full canvas height (278px) in ~1s including ramp. */
+        var MAX_V    = 280;
+        var RESPONSE = 16;   // 1/RESPONSE seconds to reach target velocity
+
+        var targetVx = keys.left ? -MAX_V : (keys.right ? MAX_V : 0);
+        var targetVy = keys.up   ? -MAX_V : (keys.down  ? MAX_V : 0);
+
+        player.vx += (targetVx - player.vx) * Math.min(1, RESPONSE * dt);
+        player.vy += (targetVy - player.vy) * Math.min(1, RESPONSE * dt);
+
+        player.x = Math.max(PLAYER_R, Math.min(CW - PLAYER_R, player.x + player.vx * dt));
+        player.y = Math.max(PLAYER_R, Math.min(CH - PLAYER_R, player.y + player.vy * dt));
+
+        /* obstacle spawning — zone-cycled so player must move to top AND bottom */
+        var spawnEvery = Math.max(SPAWN_MIN, SPAWN_START - (level - 1) * SPAWN_LVL);
+        if (frameNo === 1 || frameNo % spawnEvery === 0) {
+            spawnWall(gap, level);
+        }
+
+        /* move + collide */
+        var pxSpd = speed * 60 * dt;         // convert speed (px/frame@60fps) to px/sec·dt
+        for (var i = obstacles.length - 1; i >= 0; i--) {
+            obstacles[i].x -= pxSpd;
+            if (obstacles[i].x + obstacles[i].w < 0) { obstacles.splice(i, 1); continue; }
+            if (collidesCircleRect(player.x, player.y, PLAYER_R - 2, obstacles[i])) {
+                endGame(); return;
+            }
+        }
+
+        score = Math.floor(levelTimer * 12 + (level - 1) * 360);
+        updateHUD();
+    }
+
+    /* ─────────── SPAWN WALL ─────────── */
+    function spawnWall(gap, lv) {
+        var zone   = ZONE_PATTERN[obsCount % ZONE_PATTERN.length];
+        var margin = 10;
+        var topH;
+
+        if (zone === 'top') {
+            // gap opening is in top 38% of canvas — player must move UP
+            var maxTop = Math.floor(CH * 0.38) - gap;
+            topH = margin + Math.floor(Math.random() * Math.max(1, maxTop - margin));
+        } else if (zone === 'bottom') {
+            // gap opening is in bottom 38% — player must move DOWN
+            var minTop = Math.floor(CH * 0.62);
+            topH = minTop + Math.floor(Math.random() * Math.max(1, CH - gap - margin - minTop));
+        } else {
+            // 'free' zone: gap anywhere across full height — still must aim
+            topH = margin + Math.floor(Math.random() * (CH - gap - margin * 2));
+        }
+
+        topH = Math.max(margin, Math.min(CH - gap - margin, topH));
+
+        var obsW = Math.min(22, 12 + Math.floor(lv / 2)); // walls thicken with level
+        obstacles.push({ x: CW, y: 0,          w: obsW, h: topH });
+        obstacles.push({ x: CW, y: topH + gap, w: obsW, h: CH - topH - gap });
+        obsCount++;
+    }
+
+    function collidesCircleRect(cx, cy, r, rect) {
+        var nearX = Math.max(rect.x, Math.min(cx, rect.x + rect.w));
+        var nearY = Math.max(rect.y, Math.min(cy, rect.y + rect.h));
+        var dx = cx - nearX, dy = cy - nearY;
+        return (dx * dx + dy * dy) < (r * r);
+    }
+
+    /* ─────────── DRAW ─────────── */
+    function draw() {
+        ctx.clearRect(0, 0, CW, CH);
+        ctx.fillStyle = '#0d0d18';
+        ctx.fillRect(0, 0, CW, CH);
+
+        /* grid */
+        ctx.strokeStyle = 'rgba(255,255,255,0.022)';
+        ctx.lineWidth   = 1;
+        for (var gx = 0; gx < CW; gx += 40) { ctx.beginPath(); ctx.moveTo(gx,0); ctx.lineTo(gx,CH); ctx.stroke(); }
+        for (var gy = 0; gy < CH; gy += 40) { ctx.beginPath(); ctx.moveTo(0,gy); ctx.lineTo(CW,gy); ctx.stroke(); }
+
+        /* level tint */
+        var hue = (level - 1) * 22;
+        ctx.fillStyle = 'hsla(' + hue + ',80%,55%,0.035)';
+        ctx.fillRect(0, 0, CW, CH);
+
+        /* obstacles */
+        for (var i = 0; i < obstacles.length; i++) {
+            var o  = obstacles[i];
+            var og = ctx.createLinearGradient(o.x, 0, o.x + o.w, 0);
+            og.addColorStop(0, 'hsla(' + (hue + 345) + ',100%,58%,0.95)');
+            og.addColorStop(1, 'hsla(' + (hue + 345) + ',100%,58%,0.40)');
+            ctx.fillStyle   = og;
+            ctx.shadowColor = 'hsl(' + (hue + 345) + ',100%,52%)';
+            ctx.shadowBlur  = 10;
+            ctx.fillRect(o.x, o.y, o.w, o.h);
+        }
+        ctx.shadowBlur = 0;
+
+        /* player */
+        ctx.shadowColor = '#00ffcc';
+        ctx.shadowBlur  = 22;
+        ctx.fillStyle   = '#00ffcc';
+        ctx.beginPath();
+        ctx.arc(player.x, player.y, PLAYER_R, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.shadowBlur = 0;
+        ctx.fillStyle  = '#0a0a0e';
+        ctx.beginPath();
+        ctx.arc(player.x, player.y, PLAYER_R * 0.38, 0, Math.PI * 2);
+        ctx.fill();
+    }
+
+    function drawIdle() {
+        ctx.clearRect(0, 0, CW, CH);
+        ctx.fillStyle = '#0d0d18';
+        ctx.fillRect(0, 0, CW, CH);
+        ctx.textAlign  = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillStyle  = 'rgba(255,255,255,0.12)';
+        ctx.font       = 'bold 17px Segoe UI';
+        ctx.fillText('Press ▶ START to play', CW/2, CH/2 - 14);
+        ctx.font       = '12px Segoe UI';
+        ctx.fillStyle  = 'rgba(255,255,255,0.045)';
+        ctx.fillText('Dodge walls · Level up every 30 sec · Win CoD Mobile prizes', CW/2, CH/2 + 14);
+    }
+
+    /* ─────────── HUD ─────────── */
+    function updateHUD() {
+        document.getElementById('scoreDisplay').textContent = score;
+        document.getElementById('levelDisplay').textContent = level;
+    }
+
+    /* ─────────── LEVEL FLASH ─────────── */
+    function flashLevel(lv) {
+        var el = document.getElementById('lvlText');
+        el.textContent = 'LEVEL ' + lv;
+        el.classList.remove('anim');
+        void el.offsetWidth;           // force reflow to restart animation
+        el.classList.add('anim');
+    }
+
+    /* ─────────── END GAME ─────────── */
+    function endGame() {
+        running = false;
+        cancelAnimationFrame(raf);
+        if (score > best) {
+            best = score;
+            document.getElementById('bestDisplay').textContent = best;
+        }
+        document.getElementById('modalScore').textContent = score;
+        document.getElementById('modalLevel').textContent  = level;
+        document.getElementById('saveStatus').textContent  = '';
+        document.getElementById('saveStatus').className    = 'save-status';
+        document.getElementById('overlay').classList.add('show');
+    }
+
+    /* ─────────── MODAL ─────────── */
+    document.getElementById('saveForm').addEventListener('submit', function(e){
+        e.preventDefault();
+        var name  = document.getElementById('playerName').value.trim();
+        var email = document.getElementById('playerEmail').value.trim();
+        var btn   = document.getElementById('saveBtn');
+        var stat  = document.getElementById('saveStatus');
+        if (!name || !email) return;
+
+        btn.disabled = true;
+        btn.textContent = 'Saving…';
+        stat.textContent = '';
+        stat.className   = 'save-status';
+
+        /* save locally as instant fallback */
+        var all = lsLoad();
+        all.push({ name: name, email: email, score: score, level: level, ts: new Date().toISOString() });
+        all.sort(function(a,b){ return b.score - a.score || b.level - a.level; });
+        lsSave(all);
+
+        function finish(msg, isErr) {
+            stat.textContent = msg;
+            stat.className   = 'save-status' + (isErr ? ' err' : '');
+            loadAndRenderBoard();
+            setTimeout(function(){
+                document.getElementById('overlay').classList.remove('show');
+                btn.disabled = false;
+                btn.textContent = 'Save Score & Join Leaderboard';
+                document.getElementById('saveForm').reset();
+                document.getElementById('lbBody').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 1400);
+        }
+
+        if (GH_TOKEN) {
+            ghSaveEntry(name, email, score, level,
+                function()    { finish('✓ Score saved to leaderboard!', false); },
+                function(err) { finish('✓ Saved locally — GitHub write failed: ' + err, true); }
+            );
+        } else {
+            finish('✓ Saved locally (add GH_TOKEN to enable global leaderboard)', false);
+        }
+    });
+
+    document.getElementById('skipBtn').addEventListener('click', function(){
+        document.getElementById('overlay').classList.remove('show');
+    });
+
+    /* ─────────── START BUTTON ─────────── */
+    document.getElementById('startBtn').addEventListener('click', function(){
+        this.textContent = '↺ Restart';
+        document.getElementById('overlay').classList.remove('show');
+        initGame();
+    });
+
+    /* ─────────── KEYBOARD ─────────── */
+    var keyMap = {
+        ArrowUp:'up', ArrowDown:'down', ArrowLeft:'left', ArrowRight:'right',
+        w:'up', s:'down', a:'left', d:'right',
+        W:'up', S:'down', A:'left', D:'right'
+    };
+
+    function isTyping() {
+        var tag = document.activeElement && document.activeElement.tagName;
+        return tag === 'INPUT' || tag === 'TEXTAREA';
+    }
+
+    document.addEventListener('keydown', function(e){
+        if (isTyping()) return;
+        var d = keyMap[e.key];
+        if (d) { keys[d] = true; e.preventDefault(); }
+    });
+
+    document.addEventListener('keyup', function(e){
+        if (isTyping()) return;
+        var d = keyMap[e.key];
+        if (d) keys[d] = false;
+    });
+
+    /* ─────────── D-PAD ─────────── */
+    function bindDpad(id, dir) {
+        var btn = document.getElementById(id);
+        function on()  { keys[dir] = true;  btn.classList.add('pressed'); }
+        function off() { keys[dir] = false; btn.classList.remove('pressed'); }
+        btn.addEventListener('mousedown',   on);
+        btn.addEventListener('touchstart',  function(e){ e.preventDefault(); on(); }, { passive: false });
+        btn.addEventListener('mouseup',     off);
+        btn.addEventListener('mouseleave',  off);
+        btn.addEventListener('touchend',    off);
+        btn.addEventListener('touchcancel', off);
+    }
+
+    bindDpad('btnUp',    'up');
+    bindDpad('btnDown',  'down');
+    bindDpad('btnLeft',  'left');
+    bindDpad('btnRight', 'right');
+
+    /* ─────────── BOOT ─────────── */
+    loadAndRenderBoard();
+    drawIdle();
+
+})();
+</script>
 </body>
 </html>
