@@ -712,15 +712,18 @@
 
     /* ─────────── LOAD LEADERBOARD FROM GITHUB ─────────── */
     function ghLoadBoard(cb) {
-        // Read raw CSV — public URL, no token needed
-        fetch(GH_RAW + '?t=' + Date.now())
-            .then(function(r) { return r.ok ? r.text() : Promise.reject(); })
-            .then(function(text) {
-                var all = csvParse(text);
-                all.sort(function(a,b){ return b.score - a.score || b.level - a.level; });
-                cb(all.slice(0, 10));
-            })
-            .catch(function() { cb(null); });
+        // Use the Contents API (not raw URL) — bypasses CDN cache, always fresh
+        fetch(GH_API, {
+            headers: { 'Accept': 'application/vnd.github+json' }
+        })
+        .then(function(r) { return r.ok ? r.json() : Promise.reject(); })
+        .then(function(meta) {
+            var text = decodeURIComponent(escape(atob(meta.content.replace(/\n/g, ''))));
+            var all  = csvParse(text);
+            all.sort(function(a,b){ return b.score - a.score || b.level - a.level; });
+            cb(all.slice(0, 10));
+        })
+        .catch(function() { cb(null); });
     }
 
     /* ─────────── RENDER BOARD ─────────── */
